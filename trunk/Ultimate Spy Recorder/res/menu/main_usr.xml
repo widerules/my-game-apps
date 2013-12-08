@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_menu_set"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:title="@string/action_settings"/>
+    <item
+        android:id="@+id/action_player"
+        android:icon="@drawable/ic_menu_play"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="@string/action_player"/>
+    <item
+        android:id="@+id/action_recorder"
+        android:icon="@drawable/ic_menu_rec"
+        android:orderInCategory="3"
+        android:showAsAction="always"
+        android:title="@string/action_recorder"/>
+
+</menu>
