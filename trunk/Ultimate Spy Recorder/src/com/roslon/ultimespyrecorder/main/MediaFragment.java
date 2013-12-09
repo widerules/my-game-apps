@@ -2,7 +2,9 @@ package com.roslon.ultimespyrecorder.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,12 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.roslong.ultimespyrecorder.util.SongsManager;
+
 import com.roslong.ultimespyrecorder.util.Utilities;
 
 public class MediaFragment extends Fragment implements OnClickListener {
@@ -61,7 +65,7 @@ public class MediaFragment extends Fragment implements OnClickListener {
         // Mediaplayer
         mp = new MediaPlayer();
       
-        // Getting all songs list
+    // Getting all songs list
 
         SongsManager plm = new SongsManager();
         // get all songs from sdcard
@@ -78,11 +82,22 @@ public class MediaFragment extends Fragment implements OnClickListener {
             // adding HashList to ArrayList
             songsListData.add(song);
         }
-        
-       
+  
  
-        // selecting single ListView item
-    
+       
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+            "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+            "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
+            "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
+            "Android", "iPhone", "WindowsMobile" };
+
+        final ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < values.length; ++i) {
+          list.add(values[i]);
+        }
+        final StableArrayAdapter adapter = new StableArrayAdapter(this.getActivity(),
+            android.R.layout.simple_list_item_1, list);
+        objectListView.setAdapter(adapter);
  
 		return v;
 	}
@@ -132,5 +147,30 @@ public class MediaFragment extends Fragment implements OnClickListener {
 	           ;// startService(new Intent(MusicService.ACTION_SKIP));
 	     
 	}
+
+private class StableArrayAdapter extends ArrayAdapter<String> {
+
+    HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
+
+    public StableArrayAdapter(Context context, int textViewResourceId,
+        List<String> objects) {
+      super(context, textViewResourceId, objects);
+      for (int i = 0; i < objects.size(); ++i) {
+        mIdMap.put(objects.get(i), i);
+      }
+    }
+
+    @Override
+    public long getItemId(int position) {
+      String item = getItem(position);
+      return mIdMap.get(item);
+    }
+
+    @Override
+    public boolean hasStableIds() {
+      return true;
+    }
+
+  }
 	
 }
