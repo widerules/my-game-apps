@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -70,33 +71,27 @@ public class MediaFragment extends Fragment implements OnClickListener {
         SongsManager plm = new SongsManager();
         // get all songs from sdcard
         songsList = plm.getPlayList();
-        if(songsList==null||songsList.isEmpty())
+        if(songsList.isEmpty())
         { HashMap<String, String> pl= new HashMap<String, String> ();
-        pl.put("empty","empty");
+        pl.put("songTitle","songTitle");
 		songsList.add(pl);}
         // looping through playlist
+        String key= "songTitle";
+        final ArrayList<String> list_namea = new ArrayList<String>();
         for (int i = 0; i < songsList.size(); i++) {
             // creating new HashMap
             HashMap<String, String> song = songsList.get(i);
- 
+            Log.d("lista",songsList.get(i).get(key));
             // adding HashList to ArrayList
             songsListData.add(song);
+            list_namea.add(songsList.get(i).get(key));
         }
   
  
        
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-            "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-            "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-            "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-            "Android", "iPhone", "WindowsMobile" };
-
-        final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-          list.add(values[i]);
-        }
+     
         final StableArrayAdapter adapter = new StableArrayAdapter(this.getActivity(),
-            android.R.layout.simple_list_item_1, list);
+            android.R.layout.simple_list_item_1, list_namea);
         objectListView.setAdapter(adapter);
  
 		return v;
