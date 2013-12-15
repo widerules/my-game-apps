@@ -21,22 +21,23 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int btn_pause=0x7f020000;
-        public static final int btn_play=0x7f020001;
-        public static final int btn_stop=0x7f020002;
-        public static final int gradient_bg=0x7f020003;
-        public static final int gradient_bg_hover=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int ic_menu_play=0x7f020006;
-        public static final int ic_menu_rec=0x7f020007;
-        public static final int ic_menu_set=0x7f020008;
-        public static final int list_selector=0x7f020009;
-        public static final int pause=0x7f02000a;
-        public static final int pause_pressed=0x7f02000b;
-        public static final int play=0x7f02000c;
-        public static final int play_pressed=0x7f02000d;
-        public static final int stop=0x7f02000e;
-        public static final int stop_pressed=0x7f02000f;
+        public static final int border=0x7f020000;
+        public static final int btn_pause=0x7f020001;
+        public static final int btn_play=0x7f020002;
+        public static final int btn_stop=0x7f020003;
+        public static final int gradient_bg=0x7f020004;
+        public static final int gradient_bg_hover=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int ic_menu_play=0x7f020007;
+        public static final int ic_menu_rec=0x7f020008;
+        public static final int ic_menu_set=0x7f020009;
+        public static final int list_selector=0x7f02000a;
+        public static final int pause=0x7f02000b;
+        public static final int pause_pressed=0x7f02000c;
+        public static final int play=0x7f02000d;
+        public static final int play_pressed=0x7f02000e;
+        public static final int stop=0x7f02000f;
+        public static final int stop_pressed=0x7f020010;
     }
     public static final class id {
         public static final int action_player=0x7f08000c;
