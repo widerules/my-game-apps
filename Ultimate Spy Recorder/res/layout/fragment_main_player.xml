@@ -47,32 +47,33 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
-        android:layout_height="66dp"
+        android:layout_height="76dp"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/linearLayout1"
         android:layout_centerHorizontal="true"
-        android:gravity="end"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/playbutton"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
             android:background="@drawable/btn_play" />
 
         <Button
             android:id="@+id/pausebutton"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/btn_pause" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_pause"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/stopbutton"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/btn_stop" />
     </LinearLayout>
 
