@@ -38,7 +38,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 
 
 	// Media Player
-	private  MediaPlayer mp;
+	private static  MediaPlayer mp;
 	private int selez=0,poz =0;
 
 
@@ -60,9 +60,9 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		btnPlay.setOnClickListener(this);
 		btnPause.setOnClickListener(this);
 		btnStop.setOnClickListener(this);
-
 		// Mediaplayer
 		mp = new MediaPlayer();
+		
 
 		// Getting all songs list
 
@@ -93,9 +93,11 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				selez=arg2;
-			
+				
+				
 				try {
 					mp.setDataSource(songsList.get(selez).get("songPath"));
+					mp.prepare();
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -136,30 +138,14 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			btnPause.setVisibility(View.VISIBLE);
 			btnPause.setClickable(true);
 			btnPlay.setClickable(false);
-			 if(mp.isPlaying()){
-                 if(mp!=null){
-                     mp.pause();
-                     
-                 }
-             }else{
-                 // Resume song
-                 if(mp!=null){
-                	 mp.reset();
-                     mp.setDataSource(songsList.get(songIndex).get("songPath"));
-                     mp.prepare();
-                     mp.start();
-                 }
-             }
-			
+			mp.start();
+            
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (RuntimeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
@@ -173,20 +159,8 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			btnPlay.setVisibility(View.VISIBLE);
 			btnPause.setVisibility(View.GONE);
 			btnPlay.setClickable(true);
-			 if(mp.isPlaying()){
-                 if(mp!=null){
-                     mp.pause();
+			mp.pause();
                      
-                 }
-             }else{
-                 // Resume song
-                 if(mp!=null){
-                	 mp.reset();
-                     mp.setDataSource(songsList.get(songIndex).get("songPath"));
-                     mp.prepare();
-                     mp.start();
-                 }
-             }
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
