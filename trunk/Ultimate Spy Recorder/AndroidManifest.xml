@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.roslon.ultimespyrecorder.main"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -28,16 +28,14 @@
             </intent-filter>
         </activity>
 
+         <!--
+            No intent filters are specified, so android:exported defaults to "false". The
+            service is only available to this app.
+        -->
         <service
-            android:name="com.roslon.ultimespyrecorder.util.MusicService"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="com.roslon.ultimespyrecorder.main.action.PLAY" />
-                <action android:name="com.roslon.ultimespyrecorder.main.action.PAUSE" />
-                <action android:name="com.roslon.ultimespyrecorder.main.action.STOP" />
-            </intent-filter>
-          
-        </service>
+            android:name=".USRService"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
