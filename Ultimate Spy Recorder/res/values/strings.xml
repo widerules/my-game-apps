@@ -9,5 +9,6 @@
     <string name="title_section1">Recoder</string>
     <string name="title_section2">Player</string>
     <string name="title_section3">Settings</string>
+    <string name="chronometer">Time Recoring:</string>
 
 </resources>
