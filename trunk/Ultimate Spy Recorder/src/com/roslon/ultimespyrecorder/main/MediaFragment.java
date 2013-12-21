@@ -39,7 +39,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 
 	// Media Player
 	private static  MediaPlayer mp;
-	private int selez=0,poz =0;
+	private static int selez=0,poz =0;
 
 
 	public MediaFragment(){super();}
@@ -63,7 +63,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		// Mediaplayer
 		mp = new MediaPlayer();
 		
-
+		
 		// Getting all songs list
 
 		SongsManager plm = new SongsManager();

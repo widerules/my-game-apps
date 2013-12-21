@@ -12,5 +12,8 @@
     <string name="chronometer">Time Recoring:</string>
     <string name="start_rec">Start Rec</string>
     <string name="stop_rec">Stop Rec</string>
+    <string name="stop">STOP</string>
+    <string name="play">PLAY</string>
+    <string name="pause">PAUSE</string>
 
 </resources>

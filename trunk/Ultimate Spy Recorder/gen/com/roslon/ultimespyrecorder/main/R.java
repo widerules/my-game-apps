@@ -77,7 +77,10 @@ public final class R {
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050000;
         public static final int chronometer=0x7f050008;
+        public static final int pause=0x7f05000d;
+        public static final int play=0x7f05000c;
         public static final int start_rec=0x7f050009;
+        public static final int stop=0x7f05000b;
         public static final int stop_rec=0x7f05000a;
         public static final int title_section1=0x7f050005;
         public static final int title_section2=0x7f050006;
