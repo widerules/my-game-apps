@@ -8,7 +8,8 @@ import java.util.HashMap;
 import android.os.Environment;
 
 public class SongsManager {
-    // SDCard Path
+    public static String mFileName = "empty";
+	// SDCard Path
     final String MEDIA_PATH =Environment.getExternalStorageDirectory().getAbsolutePath()+"/UltimaSpyRecorder";
     private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
  
