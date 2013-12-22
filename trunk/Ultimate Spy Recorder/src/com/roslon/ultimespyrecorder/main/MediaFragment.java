@@ -9,7 +9,6 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,13 +18,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.roslong.ultimespyrecorder.util.SongsManager;
-
-import com.roslong.ultimespyrecorder.util.Utilities;
 
 public class MediaFragment extends Fragment implements OnClickListener,OnCompletionListener {
 
@@ -36,10 +32,10 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	private Button btnPause;
 	private Button btnStop;
 
-
+	private static  int statop = 0;
 	// Media Player
 	private static  MediaPlayer mp;
-	private static int selez=0,poz =0;
+	private static int selez=0, poz=0;
 
 
 	public MediaFragment(){super();}
@@ -62,8 +58,8 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		btnStop.setOnClickListener(this);
 		// Mediaplayer
 		mp = new MediaPlayer();
-		
-		
+
+
 		// Getting all songs list
 
 		SongsManager plm = new SongsManager();
@@ -93,24 +89,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				selez=arg2;
-				
-				
-				try {
-					mp.setDataSource(songsList.get(selez).get("songPath"));
-					mp.prepare();
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
 
 			}});
 
@@ -134,12 +113,23 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	public void  playSong(int songIndex){
 		// Play song
 		try {
+
 			btnPlay.setVisibility(View.GONE);
 			btnPause.setVisibility(View.VISIBLE);
 			btnPause.setClickable(true);
 			btnPlay.setClickable(false);
-			mp.start();
-            
+			if(statop == 0 )
+			{
+				mp.reset();
+				mp.setDataSource(songsList.get(selez).get("songPath"));
+				mp.prepare();
+				mp.start();	
+				statop=1;
+			}else if (statop == 2){
+				mp.seekTo(poz);
+				mp.start();
+				statop=1;}
+
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -148,19 +138,24 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} 
 	}
 	public void  pauseSong(int songIndex){
 		// Play song
 		try {
 
-		
+			if(statop == 1){
 			btnPause.setClickable(false);
 			btnPlay.setVisibility(View.VISIBLE);
 			btnPause.setVisibility(View.GONE);
 			btnPlay.setClickable(true);
+			statop=2;
+			poz=mp.getCurrentPosition();
 			mp.pause();
-                     
+			}
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -178,12 +173,16 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	public void  stopSong(int songIndex){
 		// Play song
 		try {
-			mp.reset();			
+					
+			if(statop!=0){
+			mp.reset();	
 			mp.stop();
 			btnPause.setClickable(false);
 			btnPlay.setVisibility(View.VISIBLE);
 			btnPause.setVisibility(View.GONE);
 			btnPlay.setClickable(true);
+			poz=0;
+			statop=0;}
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -198,8 +197,11 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
+		mp.stop();
 		mp.release();
+		mp=null;
 		selez=0;
+		poz=0;
 	}
 
 	@Override
@@ -253,9 +255,9 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	public void onCompletion(MediaPlayer mp) {
 
 		Log.i("Completion Listener","Song Complete");
-		mp.stop();
+		//mp.stop();
 		mp.reset();
-	    try {
+		try {
 			mp.setDataSource(songsList.get(selez).get("songPath"));
 			mp.prepare();
 			mp.start();		
@@ -272,7 +274,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
