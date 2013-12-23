@@ -29,12 +29,9 @@
             </intent-filter>
         </activity>
 
-        <!--
-            No intent filters are specified, so android:exported defaults to "false". The
-            service is only available to this app.
-        -->
         <service
-            android:name=".USRService"
+            android:name="com.roslon.ultimespyrecorder.main.USRService"
+            android:enabled="true"
             android:exported="false" />
     </application>
 
