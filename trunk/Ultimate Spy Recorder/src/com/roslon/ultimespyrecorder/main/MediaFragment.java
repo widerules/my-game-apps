@@ -174,9 +174,10 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		// Play song
 		try {
 					
-			if(statop!=0){
-			mp.reset();	
+			if(statop!=0 || statop==1){
+			
 			mp.stop();
+			mp.reset();	
 			btnPause.setClickable(false);
 			btnPlay.setVisibility(View.VISIBLE);
 			btnPause.setVisibility(View.GONE);
