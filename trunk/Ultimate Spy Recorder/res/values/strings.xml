@@ -15,5 +15,6 @@
     <string name="stop">STOP</string>
     <string name="play">PLAY</string>
     <string name="pause">PAUSE</string>
+    <string name="switch1">Set Auto Rec</string>
 
 </resources>
