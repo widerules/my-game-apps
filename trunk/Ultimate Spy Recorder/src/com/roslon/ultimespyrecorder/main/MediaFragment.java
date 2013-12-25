@@ -9,6 +9,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,9 +58,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		btnPause.setOnClickListener(this);
 		btnStop.setOnClickListener(this);
 		// Mediaplayer
-		mp = new MediaPlayer();
-
-
+		createMediaPlayerIfNeeded();
 		// Getting all songs list
 
 		SongsManager plm = new SongsManager();
@@ -72,7 +71,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		// looping through playlist
 		String key= "songTitle";
 		final ArrayList<String> list_namea = new ArrayList<String>();
-		for (int i = 0; i < songsList.size(); i++) {
+		for (int i = 0; i < songsList.size(); ++i) {
 			// creating new HashMap
 			HashMap<String, String> song = songsList.get(i);
 			Log.d("lista",songsList.get(i).get(key));
@@ -148,13 +147,13 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		try {
 
 			if(statop == 1){
-			btnPause.setClickable(false);
-			btnPlay.setVisibility(View.VISIBLE);
-			btnPause.setVisibility(View.GONE);
-			btnPlay.setClickable(true);
-			statop=2;
-			poz=mp.getCurrentPosition();
-			mp.pause();
+				btnPause.setClickable(false);
+				btnPlay.setVisibility(View.VISIBLE);
+				btnPause.setVisibility(View.GONE);
+				btnPlay.setClickable(true);
+				statop=2;
+				poz=mp.getCurrentPosition();
+				mp.pause();
 			}
 
 		} catch (IllegalArgumentException e) {
@@ -173,17 +172,17 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	public void  stopSong(int songIndex){
 		// Play song
 		try {
-					
+
 			if(statop!=0 || statop==1){
-			
-			mp.stop();
-			mp.reset();	
-			btnPause.setClickable(false);
-			btnPlay.setVisibility(View.VISIBLE);
-			btnPause.setVisibility(View.GONE);
-			btnPlay.setClickable(true);
-			poz=0;
-			statop=0;}
+
+				mp.stop();
+				mp.reset();	
+				btnPause.setClickable(false);
+				btnPlay.setVisibility(View.VISIBLE);
+				btnPause.setVisibility(View.GONE);
+				btnPlay.setClickable(true);
+				poz=0;
+				statop=0;}
 
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -195,6 +194,8 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		} 
 	}
 
+	
+	
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
@@ -276,6 +277,21 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			e.printStackTrace();
 		}
 
+	}
+
+	/**
+	 * Makes sure the media player exists and has been reset. This will create the media player
+	 * if needed, or reset the existing media player if one already exists.
+	 */
+	void createMediaPlayerIfNeeded() {
+		if (mp == null) {
+			mp = new MediaPlayer();
+			mp.setWakeMode(this.getActivity().getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+			mp.setOnCompletionListener(this);
+
+		}
+		else
+			mp.reset();
 	}
 
 }
