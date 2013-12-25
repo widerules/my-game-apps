@@ -12,7 +12,7 @@
     android:scrollbars="vertical"
     android:smoothScrollbar="true"
     android1:columnCount="1"
-    android1:rowCount="5"
+    android1:rowCount="6"
     tools:context=".SettingsFragment" >
 
     <LinearLayout
@@ -66,27 +66,25 @@
         android1:layout_column="0"
         android1:layout_gravity="center_vertical|center_horizontal"
         android1:layout_marginTop="50dp"
-        android1:layout_row="2"
+        android1:layout_row="3"
+        android1:background="#ffffff"
+        android1:gravity="left"
         android1:orientation="horizontal"
         android1:padding="5dp" >
-
-        <EditText
-            android1:id="@+id/editText1"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_gravity="center_vertical|center_horizontal"
-            android1:background="#ffffff"
-            android1:ems="10"
-            android1:inputType="date" >
-
-            <requestFocus />
-        </EditText>
 
         <TextView
             android1:id="@+id/section_label"
             android1:layout_width="wrap_content"
             android1:layout_height="wrap_content"
-            android1:visibility="invisible" />
+            android1:visibility="gone" />
+
+        <CheckBox
+            android1:id="@+id/checkBox1"
+            android1:layout_width="125dp"
+            android1:layout_height="wrap_content"
+            android1:layout_gravity="center_horizontal|left"
+            android1:gravity="left"
+            android1:text="@string/checkbox" />
     </LinearLayout>
 
 </GridLayout>
