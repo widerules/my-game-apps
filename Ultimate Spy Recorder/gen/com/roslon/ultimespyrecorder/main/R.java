@@ -40,25 +40,36 @@ public final class R {
         public static final int stop_pressed=0x7f020010;
     }
     public static final class id {
-        public static final int action_player=0x7f080011;
-        public static final int action_recorder=0x7f080012;
-        public static final int action_settings=0x7f080010;
+        public static final int Picker1=0x7f080019;
+        public static final int action_player=0x7f08001c;
+        public static final int action_recorder=0x7f08001d;
+        public static final int action_settings=0x7f08001b;
+        public static final int checkBox1=0x7f080016;
         public static final int chronometer1=0x7f08000b;
+        public static final int labelMaxTime=0x7f080018;
+        public static final int labelOraTime=0x7f080013;
         public static final int linearLayout0=0x7f080002;
         public static final int linearLayout1=0x7f080004;
         public static final int linearLayout2=0x7f080006;
+        public static final int linearLayout22=0x7f080015;
+        public static final int linearLayout23=0x7f080017;
         public static final int linearLayoutr0=0x7f08000a;
-        public static final int linearLayoutr1=0x7f08000c;
+        public static final int linearLayoutr1=0x7f08000d;
+        public static final int linearLayoutr10=0x7f080012;
+        public static final int linearLayoutr12=0x7f080010;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
         public static final int pausebutton=0x7f080008;
         public static final int playList=0x7f080005;
         public static final int playbutton=0x7f080007;
         public static final int section_label=0x7f080003;
-        public static final int songTitle=0x7f08000f;
-        public static final int start_rec=0x7f08000d;
-        public static final int stop_rec=0x7f08000e;
+        public static final int section_label2=0x7f08000c;
+        public static final int songTitle=0x7f08001a;
+        public static final int start_rec=0x7f08000e;
+        public static final int stop_rec=0x7f08000f;
         public static final int stopbutton=0x7f080009;
+        public static final int switch1=0x7f080011;
+        public static final int timePicker1=0x7f080014;
     }
     public static final class layout {
         public static final int activity_main_usr=0x7f030000;
@@ -76,12 +87,16 @@ public final class R {
         public static final int action_recorder=0x7f050004;
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050000;
+        public static final int checkbox=0x7f05000f;
         public static final int chronometer=0x7f050008;
+        public static final int labelmaxtime=0x7f050010;
         public static final int pause=0x7f05000d;
         public static final int play=0x7f05000c;
         public static final int start_rec=0x7f050009;
         public static final int stop=0x7f05000b;
         public static final int stop_rec=0x7f05000a;
+        public static final int switch1=0x7f05000e;
+        public static final int timeoratime=0x7f050011;
         public static final int title_section1=0x7f050005;
         public static final int title_section2=0x7f050006;
         public static final int title_section3=0x7f050007;
