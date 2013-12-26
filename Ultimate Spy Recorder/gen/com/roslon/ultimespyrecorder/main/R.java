@@ -47,7 +47,7 @@ public final class R {
         public static final int checkBox1=0x7f080016;
         public static final int chronometer1=0x7f08000b;
         public static final int labelMaxTime=0x7f080018;
-        public static final int labelOraTime=0x7f080013;
+        public static final int labelOraTime=0x7f080010;
         public static final int linearLayout0=0x7f080002;
         public static final int linearLayout1=0x7f080004;
         public static final int linearLayout2=0x7f080006;
@@ -55,8 +55,8 @@ public final class R {
         public static final int linearLayout23=0x7f080017;
         public static final int linearLayoutr0=0x7f08000a;
         public static final int linearLayoutr1=0x7f08000d;
-        public static final int linearLayoutr10=0x7f080012;
-        public static final int linearLayoutr12=0x7f080010;
+        public static final int linearLayoutr10=0x7f080013;
+        public static final int linearLayoutr12=0x7f080011;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
         public static final int pausebutton=0x7f080008;
@@ -68,7 +68,7 @@ public final class R {
         public static final int start_rec=0x7f08000e;
         public static final int stop_rec=0x7f08000f;
         public static final int stopbutton=0x7f080009;
-        public static final int switch1=0x7f080011;
+        public static final int switch1=0x7f080012;
         public static final int timePicker1=0x7f080014;
     }
     public static final class layout {
