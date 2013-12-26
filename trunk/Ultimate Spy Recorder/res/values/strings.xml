@@ -17,5 +17,7 @@
     <string name="pause">PAUSE</string>
     <string name="switch1">Set Auto Rec</string>
     <string name="checkbox">Repeat</string>
+    <string name="labelmaxtime">Set Time Duration (Min)</string>
+    <string name="timeoratime">Time</string>
 
 </resources>
