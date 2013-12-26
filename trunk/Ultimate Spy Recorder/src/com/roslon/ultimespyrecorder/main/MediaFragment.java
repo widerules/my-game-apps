@@ -45,8 +45,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_main_player, container, false);
 
-		TextView tv = (TextView) v.findViewById(R.id.section_label);
-		tv.setText(getArguments().getString("msg"));
+	
 
 		// All player buttons
 		btnPlay = (Button) v.findViewById(R.id.playbutton);       
