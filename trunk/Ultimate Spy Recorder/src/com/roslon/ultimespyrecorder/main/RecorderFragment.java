@@ -1,6 +1,7 @@
 package com.roslon.ultimespyrecorder.main;
 
 
+import com.roslong.ultimespyrecorder.util.Constants;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,13 +77,10 @@ public class RecorderFragment extends Fragment {
 	}
 	
 	private void startRecorderService() {
-		
-		this.getActivity().startService(new Intent(getActivity(), VoiceService.class));
+		this.getActivity().startService(new Intent(Constants.ACTION_PLAY));
 	}
 
 	private void stopRecorderService() {
-	
-		this.getActivity().stopService(new Intent(getActivity(), VoiceService.class));
-		
+		this.getActivity().startService(new Intent(Constants.ACTION_STOP));
 	}
 }

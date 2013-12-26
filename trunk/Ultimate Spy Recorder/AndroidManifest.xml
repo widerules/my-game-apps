@@ -39,7 +39,13 @@
         <service
             android:name="com.roslon.ultimespyrecorder.main.VoiceService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.roslon.ultimespyrecorder.main.action.RECPLAY" />
+                <action android:name="com.roslon.ultimespyrecorder.main.action.STOPSERVICE" />
+                <action android:name="com.roslon.ultimespyrecorder.main.action.RECSTOP" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
