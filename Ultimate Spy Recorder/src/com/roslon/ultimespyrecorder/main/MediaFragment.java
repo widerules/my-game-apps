@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v4.app.Fragment;
@@ -20,7 +24,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.roslong.ultimespyrecorder.util.SongsManager;
 
@@ -32,7 +35,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	private Button btnPlay;
 	private Button btnPause;
 	private Button btnStop;
-
+	private Button btnShare;
 	private static  int statop = 0;
 	// Media Player
 	private static  MediaPlayer mp;
@@ -52,14 +55,16 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		btnPause = (Button) v.findViewById(R.id.pausebutton);
 		btnStop = (Button) v.findViewById(R.id.stopbutton);
 		objectListView = (ListView)v.findViewById(R.id.playList);
-
+		btnShare = (Button) v.findViewById(R.id.shareact);
+		
 		btnPlay.setOnClickListener(this);
 		btnPause.setOnClickListener(this);
 		btnStop.setOnClickListener(this);
+		btnShare.setOnClickListener(this);
 		// Mediaplayer
 		createMediaPlayerIfNeeded();
 		// Getting all songs list
-
+	
 		SongsManager plm = new SongsManager();
 		// get all songs from sdcard
 		songsList = plm.getPlayList();
@@ -89,6 +94,14 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 				selez=arg2;
 
 
+			}});
+		objectListView.setOnItemLongClickListener(new AdapterView.OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				
 			}});
 
 		final StableArrayAdapter adapter = new StableArrayAdapter(this.getActivity(),
@@ -212,18 +225,29 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		switch(target.getId()){
 
 		case R.id.playbutton:
-
+			btnPlay.setBackgroundColor(Color.parseColor("#4b0d2d"));
+			btnStop.setBackgroundColor(Color.parseColor("#0d4b2b"));
 			playSong(selez);
 			break;
 		case R.id.pausebutton:
+			btnPause.setBackgroundColor(Color.parseColor("#4b0d2d"));
+			btnStop.setBackgroundColor(Color.parseColor("#0d4b2b"));
 			pauseSong(selez);
 			break;
 
 		case R.id.stopbutton:
+			btnPause.setBackgroundColor(Color.parseColor("#0d4b2b"));
+			btnPlay.setBackgroundColor(Color.parseColor("#0d4b2b"));
+			btnStop.setBackgroundColor(Color.parseColor("#4b0d2d"));
 			stopSong(selez);
+			break;
+		case R.id.shareact:
+			Intent shInt = createShareIntent(selez);
+			startActivity(Intent.createChooser(shInt, "How do you want to share?"));
 			break;
 
 		}
+		
 
 	}
 
@@ -293,4 +317,15 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			mp.reset();
 	}
 
+	private Intent createShareIntent(int songIndex) {
+	  
+	    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+	    shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+	    shareIntent.setType("image/*");
+	    Log.d("sono", songsList.get(selez).get("songPath"));
+	    // For a file in shared storage.  For data in private storage, use a ContentProvider.
+
+	    shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+ songsList.get(songIndex).get("songPath")));
+	    return shareIntent;
+	} 
 }

@@ -80,8 +80,8 @@
             android1:layout_height="wrap_content"
             android1:layout_margin="10dp"
             android:clickable="true"
-            android:textColor="#101010"
-            android1:background="#FFD700"
+            android:textColor="#ffffff"
+            android1:background="#0d4b2b"
             android1:padding="10dp"
             android1:text="@string/start_rec"
             tools:ignore="ButtonStyle" />
@@ -92,8 +92,8 @@
             android1:layout_height="wrap_content"
             android1:layout_margin="10dp"
             android:clickable="true"
-            android:textColor="#101010"
-            android1:background="#FFD700"
+            android:textColor="#ffffff"
+            android1:background="#0d4b2b"
             android1:padding="10dp"
             android1:text="@string/stop_rec"
             tools:ignore="ButtonStyle" />

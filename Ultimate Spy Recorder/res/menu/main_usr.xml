@@ -18,5 +18,6 @@
         android:orderInCategory="3"
         android:showAsAction="always"
         android:title="@string/action_recorder"/>
+   
 
 </menu>
