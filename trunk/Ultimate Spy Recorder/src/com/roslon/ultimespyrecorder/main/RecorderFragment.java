@@ -4,6 +4,7 @@ package com.roslon.ultimespyrecorder.main;
 import com.roslong.ultimespyrecorder.util.Constants;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -39,7 +40,10 @@ public class RecorderFragment extends Fragment {
 
 				Toast.makeText(v.getContext().getApplicationContext(), "Stop Recording", Toast.LENGTH_LONG).show();
 				stato_service = 2;
+				btnRecStart.setBackgroundColor(Color.parseColor("#0d4b2b"));
+				btnRecStop.setBackgroundColor(Color.parseColor("#4b0d2d"));
 				stopRecorderService();
+				
 
 			}
 
@@ -50,6 +54,8 @@ public class RecorderFragment extends Fragment {
 			public void onClick(View v) {
 				Toast.makeText(v.getContext().getApplicationContext(), "Start Recording", Toast.LENGTH_LONG).show();
 				stato_service = 1;
+				btnRecStop.setBackgroundColor(Color.parseColor("#0d4b2b"));
+				btnRecStart.setBackgroundColor(Color.parseColor("#4b0d2d"));
 				startRecorderService();
 
 			}

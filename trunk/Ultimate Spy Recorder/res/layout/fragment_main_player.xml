@@ -71,7 +71,7 @@
             android1:layout_width="wrap_content"
             android1:layout_height="wrap_content"
             android1:layout_margin="10dp"
-            android:background="#4b0d2d"
+            android:background="#0d4b2b"
             android:clickable="true"
             android:text="@string/play"
             android:textColor="#ffffff"
@@ -96,9 +96,21 @@
             android1:layout_width="wrap_content"
             android1:layout_height="wrap_content"
             android1:layout_margin="10dp"
-            android:background="#4b0d2d"
+            android:background="#0d4b2b"
             android:clickable="true"
             android:text="@string/stop"
+            android:textColor="#ffffff"
+            android1:padding="10dp"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/shareact"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_margin="10dp"
+            android:background="#0d4b2b"
+            android:clickable="true"
+            android:text="@string/share"
             android:textColor="#ffffff"
             android1:padding="10dp"
             tools:ignore="ButtonStyle" />

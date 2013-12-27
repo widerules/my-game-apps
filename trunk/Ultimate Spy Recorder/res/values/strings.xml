@@ -19,5 +19,6 @@
     <string name="checkbox">Repeat</string>
     <string name="labelmaxtime">Set Time Duration (Min)</string>
     <string name="timeoratime">Time</string>
+    <string name="share">Share</string>
 
 </resources>
