@@ -1,11 +1,14 @@
 package com.roslon.ultimespyrecorder.main;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -48,7 +51,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_main_player, container, false);
 
-	
+
 
 		// All player buttons
 		btnPlay = (Button) v.findViewById(R.id.playbutton);       
@@ -56,7 +59,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		btnStop = (Button) v.findViewById(R.id.stopbutton);
 		objectListView = (ListView)v.findViewById(R.id.playList);
 		btnShare = (Button) v.findViewById(R.id.shareact);
-		
+
 		btnPlay.setOnClickListener(this);
 		btnPause.setOnClickListener(this);
 		btnStop.setOnClickListener(this);
@@ -64,7 +67,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		// Mediaplayer
 		createMediaPlayerIfNeeded();
 		// Getting all songs list
-	
+
 		SongsManager plm = new SongsManager();
 		// get all songs from sdcard
 		songsList = plm.getPlayList();
@@ -95,14 +98,34 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 
 
 			}});
-		objectListView.setOnItemLongClickListener(new AdapterView.OnItemClickListener(){
+		
+		objectListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO Auto-generated method stub
-				
-			}});
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				final String strFile =songsList.get(arg2).get("songPath"); 
+				 final AdapterView myadv = arg0;
+				 AlertDialog.Builder adb=new AlertDialog.Builder(getActivity());
+			        adb.setTitle("Delete?");
+			        adb.setMessage("Are you sure you want to delete " + arg2);
+			        final int posiz = arg2;
+			        adb.setNegativeButton("Cancel", null);
+			        adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+			         
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							File file = new File(strFile);
+							boolean deleted = file.delete();
+													
+						}});
+			        adb.show();
+			    
+				return true;
+			}
+
+		});
 
 		final StableArrayAdapter adapter = new StableArrayAdapter(this.getActivity(),
 				android.R.layout.simple_list_item_1, list_namea);
@@ -206,8 +229,8 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		} 
 	}
 
-	
-	
+
+
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
@@ -247,7 +270,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			break;
 
 		}
-		
+
 
 	}
 
@@ -318,14 +341,14 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	}
 
 	private Intent createShareIntent(int songIndex) {
-	  
-	    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-	    shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-	    shareIntent.setType("image/*");
-	    Log.d("sono", songsList.get(selez).get("songPath"));
-	    // For a file in shared storage.  For data in private storage, use a ContentProvider.
 
-	    shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+ songsList.get(songIndex).get("songPath")));
-	    return shareIntent;
+		Intent shareIntent = new Intent(Intent.ACTION_SEND);
+		shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		shareIntent.setType("image/*");
+		Log.d("sono", songsList.get(selez).get("songPath"));
+		// For a file in shared storage.  For data in private storage, use a ContentProvider.
+
+		shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+ songsList.get(songIndex).get("songPath")));
+		return shareIntent;
 	} 
 }
