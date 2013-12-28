@@ -6,19 +6,21 @@ import com.roslong.ultimespyrecorder.util.Constants;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class RecorderFragment extends Fragment {
 	 // Intent for starting the IntentService 
    
-    
+    private Chronometer rechrono;
 	private Button btnRecStart;
 	private Button btnRecStop;
 	public static int stato_service = 0;
@@ -30,7 +32,7 @@ public class RecorderFragment extends Fragment {
 
 		TextView tv = (TextView) v.findViewById(R.id.section_label);
 		tv.setText(getArguments().getString("msg"));
-
+		rechrono = ( Chronometer)v.findViewById(R.id.chronometer1);
 		btnRecStart = (Button) v.findViewById(R.id.start_rec);       
 		btnRecStop = (Button) v.findViewById(R.id.stop_rec);
 	
@@ -42,6 +44,8 @@ public class RecorderFragment extends Fragment {
 				stato_service = 2;
 				btnRecStart.setBackgroundColor(Color.parseColor("#0d4b2b"));
 				btnRecStop.setBackgroundColor(Color.parseColor("#4b0d2d"));
+				rechrono.stop();
+				
 				stopRecorderService();
 				
 
@@ -56,6 +60,8 @@ public class RecorderFragment extends Fragment {
 				stato_service = 1;
 				btnRecStop.setBackgroundColor(Color.parseColor("#0d4b2b"));
 				btnRecStart.setBackgroundColor(Color.parseColor("#4b0d2d"));
+				rechrono.setBase(SystemClock.elapsedRealtime());
+				rechrono.start();
 				startRecorderService();
 
 			}
