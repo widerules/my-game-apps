@@ -48,6 +48,7 @@ public class RecorderFragment extends Fragment {
 				
 				stopRecorderService();
 				
+				
 
 			}
 

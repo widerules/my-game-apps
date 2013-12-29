@@ -41,10 +41,11 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	private Button btnShare;
 	private static  int statop = 0;
 	// Media Player
+	private SongsManager plm ;
 	private static  MediaPlayer mp;
 	private static int selez=0, poz=0;
-
-
+	private StableArrayAdapter adapter;
+	private  ArrayList<String> list_namea = new ArrayList<String>();
 	public MediaFragment(){super();}
 
 	@Override
@@ -68,24 +69,9 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		createMediaPlayerIfNeeded();
 		// Getting all songs list
 
-		SongsManager plm = new SongsManager();
+		plm= new SongsManager();
 		// get all songs from sdcard
-		songsList = plm.getPlayList();
-		if(songsList.isEmpty())
-		{ HashMap<String, String> pl= new HashMap<String, String> ();
-		pl.put("songTitle","songTitle");
-		songsList.add(pl);}
-		// looping through playlist
-		String key= "songTitle";
-		final ArrayList<String> list_namea = new ArrayList<String>();
-		for (int i = 0; i < songsList.size(); ++i) {
-			// creating new HashMap
-			HashMap<String, String> song = songsList.get(i);
-			Log.d("lista",songsList.get(i).get(key));
-			// adding HashList to ArrayList
-			songsListData.add(song);
-			list_namea.add(songsList.get(i).get(key));
-		}
+
 
 
 		//get selected song
@@ -98,38 +84,41 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 
 
 			}});
-		
+
 		objectListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				final String strFile =songsList.get(arg2).get("songPath"); 
-				 final AdapterView myadv = arg0;
-				 AlertDialog.Builder adb=new AlertDialog.Builder(getActivity());
-			        adb.setTitle("Delete?");
-			        adb.setMessage("Are you sure you want to delete " + arg2);
-			        final int posiz = arg2;
-			        adb.setNegativeButton("Cancel", null);
-			        adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
-			         
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-							File file = new File(strFile);
-							boolean deleted = file.delete();
-													
-						}});
-			        adb.show();
-			    
+
+				AlertDialog.Builder adb=new AlertDialog.Builder(getActivity());
+				adb.setTitle("Delete?");
+				adb.setMessage("Are you sure you want to delete " + arg2);
+
+				adb.setNegativeButton("Cancel", null);
+				adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						File file = new File(strFile);
+						boolean deleted = file.delete();
+						adapter.clear();
+
+						refreshList();
+						adapter.notifyDataSetChanged();
+
+					}});
+				adb.show();
+
 				return true;
 			}
 
 		});
 
-		final StableArrayAdapter adapter = new StableArrayAdapter(this.getActivity(),
-				android.R.layout.simple_list_item_1, list_namea);
-		objectListView.setAdapter(adapter);
+		// create playlist
+		refreshList();
 
 		return v;
 	}
@@ -351,4 +340,35 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+ songsList.get(songIndex).get("songPath")));
 		return shareIntent;
 	} 
+
+	public void refreshList(){
+		songsList.clear();
+		songsList = plm.getPlayList();
+		if(songsList.isEmpty())
+		{ HashMap<String, String> pl= new HashMap<String, String> ();
+		pl.put("songTitle","songTitle");
+		songsList.add(pl);}
+
+		String key= "songTitle";
+		list_namea.clear();
+
+		for (int i = 0; i < songsList.size(); ++i) {
+			// creating new HashMap
+			HashMap<String, String> song = songsList.get(i);
+			Log.d("lista",songsList.get(i).get(key));
+			// adding HashList to ArrayList
+			songsListData.add(song);
+			list_namea.add(songsList.get(i).get(key));
+		}
+
+
+
+		adapter = new StableArrayAdapter(this.getActivity(),
+				android.R.layout.simple_list_item_1, list_namea);
+
+		objectListView.setAdapter(adapter);
+
+
+
+	}
 }
