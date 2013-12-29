@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
@@ -104,10 +103,11 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 						// TODO Auto-generated method stub
 						File file = new File(strFile);
 						boolean deleted = file.delete();
+						if(deleted){
 						adapter.clear();
 
 						refreshList();
-						adapter.notifyDataSetChanged();
+						adapter.notifyDataSetChanged();}
 
 					}});
 				adb.show();
