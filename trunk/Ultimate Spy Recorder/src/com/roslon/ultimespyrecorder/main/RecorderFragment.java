@@ -45,7 +45,7 @@ public class RecorderFragment extends Fragment {
 				btnRecStart.setBackgroundColor(Color.parseColor("#0d4b2b"));
 				btnRecStop.setBackgroundColor(Color.parseColor("#4b0d2d"));
 				rechrono.stop();
-				
+				btnRecStart.setClickable(true);
 				stopRecorderService();
 				
 				
@@ -63,6 +63,7 @@ public class RecorderFragment extends Fragment {
 				btnRecStart.setBackgroundColor(Color.parseColor("#4b0d2d"));
 				rechrono.setBase(SystemClock.elapsedRealtime());
 				rechrono.start();
+				btnRecStart.setClickable(false);
 				startRecorderService();
 
 			}
