@@ -46,7 +46,7 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 	private StableArrayAdapter adapter;
 	private  ArrayList<String> list_namea = new ArrayList<String>();
 	public MediaFragment(){super();}
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_main_player, container, false);
@@ -60,10 +60,12 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 		objectListView = (ListView)v.findViewById(R.id.playList);
 		btnShare = (Button) v.findViewById(R.id.shareact);
 
+
 		btnPlay.setOnClickListener(this);
 		btnPause.setOnClickListener(this);
 		btnStop.setOnClickListener(this);
 		btnShare.setOnClickListener(this);
+		
 		// Mediaplayer
 		createMediaPlayerIfNeeded();
 		// Getting all songs list
@@ -103,11 +105,10 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 						// TODO Auto-generated method stub
 						File file = new File(strFile);
 						boolean deleted = file.delete();
-						if(deleted){
 						adapter.clear();
 
 						refreshList();
-						adapter.notifyDataSetChanged();}
+						adapter.notifyDataSetChanged();
 
 					}});
 				adb.show();
@@ -258,9 +259,8 @@ public class MediaFragment extends Fragment implements OnClickListener,OnComplet
 			startActivity(Intent.createChooser(shInt, "How do you want to share?"));
 			break;
 
+		
 		}
-
-
 	}
 
 	private class StableArrayAdapter extends ArrayAdapter<String> {
