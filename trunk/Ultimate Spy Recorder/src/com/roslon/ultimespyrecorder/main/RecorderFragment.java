@@ -18,14 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class RecorderFragment extends Fragment {
-	 // Intent for starting the IntentService 
-   
-    private Chronometer rechrono;
+	// Intent for starting the IntentService 
+
+	private Chronometer rechrono;
 	private Button btnRecStart;
 	private Button btnRecStop;
 	public static int stato_service = 0;
 	public RecorderFragment(){super();}
-
+ 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_main_recorder, container, false);
@@ -35,7 +35,7 @@ public class RecorderFragment extends Fragment {
 		rechrono = ( Chronometer)v.findViewById(R.id.chronometer1);
 		btnRecStart = (Button) v.findViewById(R.id.start_rec);       
 		btnRecStop = (Button) v.findViewById(R.id.stop_rec);
-	
+
 		btnRecStop.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {
@@ -46,9 +46,10 @@ public class RecorderFragment extends Fragment {
 				btnRecStop.setBackgroundColor(Color.parseColor("#4b0d2d"));
 				rechrono.stop();
 				btnRecStart.setClickable(true);
-				stopRecorderService();
-				
-				
+				btnRecStop.setClickable(false);
+				if(btnRecStop.isClickable())
+					stopRecorderService();
+	
 
 			}
 
@@ -64,6 +65,7 @@ public class RecorderFragment extends Fragment {
 				rechrono.setBase(SystemClock.elapsedRealtime());
 				rechrono.start();
 				btnRecStart.setClickable(false);
+				btnRecStop.setClickable(true);
 				startRecorderService();
 
 			}
@@ -83,13 +85,13 @@ public class RecorderFragment extends Fragment {
 
 		return f;
 	}
-	
+
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
-		
+
 	}
-	
+
 	private void startRecorderService() {
 		this.getActivity().startService(new Intent(Constants.ACTION_PLAY));
 	}
