@@ -70,7 +70,7 @@ public class VoiceService extends Service {
 	private void stopRecording() {
 		//mRecorder.stop();
 		relaxResources(true);
-		// stopSelf();
+		
 	}
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
@@ -97,8 +97,7 @@ public class VoiceService extends Service {
 	}    
 
 	void stopVoiceService(boolean force) {
-		// let go of all resources...
-	
+		// let go of all resources...	
 		stopRecording();
 		// service is no longer necessary. Will be started again if needed.
 		stopSelf();
