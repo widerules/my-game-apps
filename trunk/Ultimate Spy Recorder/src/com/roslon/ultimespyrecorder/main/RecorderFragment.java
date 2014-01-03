@@ -46,8 +46,7 @@ public class RecorderFragment extends Fragment {
 				rechrono.stop();
 				btnRecStart.setClickable(true);
 				btnRecStop.setClickable(false);
-				if(btnRecStop.isClickable())
-					stopRecorderService();
+				stopRecorderService();
 	
 
 			}

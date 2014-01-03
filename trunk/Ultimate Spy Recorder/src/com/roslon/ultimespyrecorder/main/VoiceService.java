@@ -29,7 +29,7 @@ public class VoiceService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		stopVoiceService(true);
+	//	stopVoiceService(true);
 
 	}
 
@@ -68,7 +68,7 @@ public class VoiceService extends Service {
 	}
 
 	private void stopRecording() {
-		//mRecorder.stop();
+		mRecorder.stop();
 		relaxResources(true);
 		
 	}
@@ -122,7 +122,7 @@ public class VoiceService extends Service {
 		// stop and release the Media Player, if it's available
 		if (releaseMediaPlayer && mRecorder != null) {
 			mRecorder.reset();
-			mRecorder.release();
+			//mRecorder.release();
 			mRecorder = null;
 		}
 
