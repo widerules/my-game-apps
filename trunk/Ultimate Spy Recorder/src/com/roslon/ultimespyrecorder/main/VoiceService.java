@@ -17,7 +17,7 @@ import com.roslong.ultimespyrecorder.util.SongsManager;
 
 public class VoiceService extends Service {
 	public static boolean STARTED = false;
-	private static  MediaRecorder mRecorder = null;
+	private MediaRecorder mRecorder = null;
 
 
 	@Override
@@ -68,7 +68,7 @@ public class VoiceService extends Service {
 	}
 
 	private void stopRecording() {
-		mRecorder.stop();
+		//mRecorder.stop();
 		relaxResources(true);
 		// stopSelf();
 	}
@@ -98,7 +98,8 @@ public class VoiceService extends Service {
 
 	void stopVoiceService(boolean force) {
 		// let go of all resources...
-		relaxResources(force);
+	
+		stopRecording();
 		// service is no longer necessary. Will be started again if needed.
 		stopSelf();
 

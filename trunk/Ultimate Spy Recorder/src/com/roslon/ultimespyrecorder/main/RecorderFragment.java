@@ -88,6 +88,7 @@ public class RecorderFragment extends Fragment {
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
+		this.getActivity().startService(new Intent(Constants.ACTION_STOP));
 
 	}
 
