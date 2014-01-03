@@ -39,7 +39,6 @@ public class RecorderFragment extends Fragment {
 		btnRecStop.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v) {
-
 				Toast.makeText(v.getContext().getApplicationContext(), "Stop Recording", Toast.LENGTH_LONG).show();
 				stato_service = 2;
 				btnRecStart.setBackgroundColor(Color.parseColor("#0d4b2b"));
