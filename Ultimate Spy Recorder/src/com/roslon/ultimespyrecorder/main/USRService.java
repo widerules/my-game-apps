@@ -24,7 +24,7 @@ public class USRService extends Service {
 	// Used to write to the system log from this class.
 	public static final String LOG_TAG = "USRService";
 	public static boolean STARTED = false;
-	private MediaRecorder mRecorder = null;
+	private MediaRecorder mRecorder2 = null;
 
 
 	@Override
@@ -56,25 +56,25 @@ public class USRService extends Service {
 		String timeStamp = new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(new Date());
 		SongsManager.mFileName +=timeStamp+".mp3";
 
-		mRecorder = new MediaRecorder();
-		mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-		mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-		mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-		mRecorder.setAudioEncodingBitRate(16);
-		mRecorder.setAudioSamplingRate(44100);
-		mRecorder.setOutputFile(SongsManager.mFileName);
+		mRecorder2 = new MediaRecorder();
+		mRecorder2.setAudioSource(MediaRecorder.AudioSource.MIC);
+		mRecorder2.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+		mRecorder2.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+		mRecorder2.setAudioEncodingBitRate(16);
+		mRecorder2.setAudioSamplingRate(44100);
+		mRecorder2.setOutputFile(SongsManager.mFileName);
 
 		try {
-			mRecorder.prepare();
+			mRecorder2.prepare();
 		} catch (IOException e) {
 			Log.e("voice service", "prepare() failed");
 		}
 
-		mRecorder.start();
+		mRecorder2.start();
 	}
 
 	private void stopRecording() {
-	//	mRecorder.stop();
+	    mRecorder2.stop();
 		relaxResources(true);
 
 	}
@@ -126,11 +126,11 @@ public class USRService extends Service {
 		// stop being a foreground service
 		stopForeground(true);
 		// stop and release the Media Player, if it's available
-		if (releaseMediaPlayer && mRecorder != null) {
-			mRecorder.stop();
-			mRecorder.reset();
-			mRecorder.release();
-			mRecorder = null;
+		if (releaseMediaPlayer && mRecorder2 != null) {
+			
+			mRecorder2.reset();
+			mRecorder2.release();
+			mRecorder2 = null;
 		}
 
 	}
