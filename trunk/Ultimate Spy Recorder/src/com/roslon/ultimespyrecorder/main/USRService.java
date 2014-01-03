@@ -74,9 +74,9 @@ public class USRService extends Service {
     }
 
     private void stopRecording() {
-        mRecorder.stop();
+      //  mRecorder.stop();
         relaxResources(true);
-       // stopSelf();
+     
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -104,9 +104,9 @@ public class USRService extends Service {
  
     void stopUSRService(boolean force) {
             // let go of all resources...
-            relaxResources(force);
-            // service is no longer necessary. Will be started again if needed.
-            stopSelf();
+    	stopRecording();
+		// service is no longer necessary. Will be started again if needed.
+		stopSelf();
         
     }
     
