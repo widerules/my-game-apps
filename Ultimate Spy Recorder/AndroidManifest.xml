@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.STORAGE" /> 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -47,6 +48,16 @@
                 <action android:name="com.roslon.ultimespyrecorder.main.action.RECPLAY" />
                 <action android:name="com.roslon.ultimespyrecorder.main.action.STOPSERVICE" />
                 <action android:name="com.roslon.ultimespyrecorder.main.action.RECSTOP" />
+            </intent-filter>
+        </service>
+         <service
+            android:name="com.roslon.ultimespyrecorder.main.USRService"
+            android:enabled="false"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.roslon.ultimespyrecorder.main.action.RECPLAY2" />
+                <action android:name="com.roslon.ultimespyrecorder.main.action.STOPSERVICE2" />
+                <action android:name="com.roslon.ultimespyrecorder.main.action.RECSTOP2" />
             </intent-filter>
         </service>
     </application>
