@@ -74,8 +74,9 @@ public class USRService extends Service {
 	}
 
 	private void stopRecording() {
-	    mRecorder2.stop();
-		relaxResources(true);
+		mRecorder2.stop();
+        mRecorder2.release();
+        mRecorder2 = null;
 
 	}
 	@Override
